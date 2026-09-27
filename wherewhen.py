@@ -16,7 +16,9 @@ where they already read config.json:
 """
 
 import json
+import os
 import sys
+import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -102,6 +104,35 @@ def load_token() -> str:
     return extract_token(raw)
 
 
+def save_token(token: str) -> None:
+    """Store `token` as trip_token, leaving every other config key intact.
+
+    The config also holds keys the plugin runner owns (notably
+    `permissions`), so the whole object is rewritten rather than replaced.
+    A temp file in the same directory is swapped in with os.replace, so a
+    crash mid-write cannot truncate the existing config.
+    """
+    config = _load_config()
+    config["trip_token"] = token
+    path = ROOT / "config.json"
+    tmp_name = None
+    try:
+        fd, tmp_name = tempfile.mkstemp(
+            dir=str(ROOT), prefix="config.json.", suffix=".tmp"
+        )
+        with os.fdopen(fd, "w") as tmp_file:
+            json.dump(config, tmp_file, indent=2)
+            tmp_file.write("\n")
+        os.replace(tmp_name, path)
+    except OSError as err:
+        if tmp_name is not None:
+            try:
+                os.unlink(tmp_name)
+            except OSError:
+                pass
+        raise ToolError(f"Could not write config.json: {err}") from err
+
+
 def build_base_url(token: str) -> str:
     return API_ROOT + urllib.parse.quote(token, safe="") + "/"
 
@@ -128,15 +159,18 @@ def _error_from_http(err: urllib.error.HTTPError, places: bool) -> ToolError:
     return ToolError(text)
 
 
-def api_call(method, path, *, body=None, query=None, places=False):
+def api_call(method, path, *, body=None, query=None, places=False, token=None):
     """Call the agent API and return the decoded JSON response.
 
     `path` is relative to the trip base URL, e.g. "trip/" or
     "stops/<id>/move/". A `body` of None sends no payload (GET, DELETE);
     any other value is JSON-encoded. Explicit nulls inside `body` are
     preserved, because the API uses null to clear some fields.
+
+    Pass `token` (a bare token) to call a trip other than the one in
+    config.json; otherwise the configured token is used.
     """
-    url = build_base_url(load_token()) + path
+    url = build_base_url(token if token is not None else load_token()) + path
     if query:
         url += "?" + urllib.parse.urlencode(query)
 

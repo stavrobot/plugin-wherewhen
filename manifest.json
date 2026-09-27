@@ -1,6 +1,6 @@
 {
   "name": "wherewhen",
-  "description": "Read and edit one Wherewhen trip: its days, stops and unscheduled ideas, through the trip's Wherewhen agent API. Days have no stored date and cannot be reordered; add a day at the end or remove one. Pass \"ideas\" as the dayId to work with unscheduled stops. A placeholder (a stop added by name instead of placeId) inherits the previous stop's location and cannot be the first stop of a day (use a real place or index >= 1). pinnedTime and pinnedEndTime are HH:mm in the place's local time and may run past midnight, up to 47:59; send null to clear a fixed time. legMode is one of auto, walk, drive, cycle or other. notes is free text of at most 2000 characters; send null or an empty string to clear it. To add a real place, find it with search_places and then add_stop with its placeId. Every write returns the full updated trip.",
+  "description": "A plugin for the trip management app Wherewhen.",
   "summary": "Plan trip days, stops and ideas in Wherewhen",
   "config": {
     "trip_token": {

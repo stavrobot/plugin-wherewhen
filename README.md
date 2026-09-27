@@ -14,8 +14,11 @@ Tell Stavrobot to install https://github.com/stavrobot/plugin-wherewhen
 
 - `trip_token` (required): the trip's Wherewhen agent link, or just the token from it. In Wherewhen, open the trip and choose its agent link, then paste the whole URL. The full agent URL and the bare token (the part after `/api/agent/`) are both accepted.
 
+The plugin works on one trip at a time; use **switch_trip** to change which trip it works on.
+
 ## Tools
 
+- **switch_trip** — switch the plugin to another trip, given that trip's agent link or token.
 - **get_trip** — return the current trip: name, start date, padding, days with their stops, and ideas.
 - **update_trip** — change the trip's name, start date or padding.
 - **search_places** — search Google Places for candidates to add as real stops.

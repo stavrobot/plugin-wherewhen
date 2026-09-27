@@ -1,0 +1,11 @@
+{
+  "name": "switch_trip",
+  "description": "Switch the plugin to another Wherewhen trip. Pass the trip's agent link or token. Use this instead of calling the Wherewhen API directly. The link grants write access to the trip, so do not repeat it. Returns the new trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "link": {
+      "type": "string",
+      "description": "The trip's Wherewhen agent link, or just the token from it."
+    }
+  }
+}
