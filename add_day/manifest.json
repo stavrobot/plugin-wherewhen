@@ -1,0 +1,15 @@
+{
+  "name": "add_day",
+  "description": "Append a new day at the end of the trip. Days cannot be reordered, so a new day is always last. If startTime/endTime are omitted the server defaults to 09:00-22:00. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "startTime": {
+      "type": "string",
+      "description": "Day start time, HH:mm local."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "Day end time, HH:mm local."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "add_stop",
+  "description": "Add a stop to a day, or to ideas when dayId is \"ideas\". Pass placeId (from search_places) to add a real place, or name to add a placeholder. A placeholder inherits the previous stop's location and cannot be the first stop of a day, so add it at index >= 1 or after a real place. index is 0-based and clamped to the end of the list; omit it to append. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "dayId": {
+      "type": "string",
+      "description": "Id of the day to add the stop to, or \"ideas\" for the unscheduled stops."
+    },
+    "placeId": {
+      "type": "string",
+      "description": "Place id from search_places, for a real place."
+    },
+    "name": {
+      "type": "string",
+      "description": "Stop name. With placeId it overrides the place's default name; without placeId it creates a placeholder."
+    },
+    "index": {
+      "type": "integer",
+      "description": "0-based position within the day. Omit to append; values past the end are clamped to the end."
+    },
+    "pinnedTime": {
+      "type": "string|null",
+      "description": "Fixed start time, HH:mm local to the place. May run past midnight, up to 47:59. Send null to leave it unscheduled."
+    },
+    "pinnedEndTime": {
+      "type": "string|null",
+      "description": "Fixed end time, HH:mm local to the place. May run past midnight, up to 47:59. Send null to leave it unscheduled."
+    },
+    "legMode": {
+      "type": "string",
+      "description": "How you travel to this stop: auto, walk, drive, cycle or other. \"auto\" picks walking or driving; \"other\" is travel the app cannot compute."
+    },
+    "notes": {
+      "type": "string|null",
+      "description": "Free text for this stop, at most 2000 characters. Send null or an empty string to clear it."
+    }
+  }
+}

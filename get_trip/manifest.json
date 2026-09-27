@@ -1,0 +1,6 @@
+{
+  "name": "get_trip",
+  "description": "Return the full current state of the trip: name, startDate, paddingMin, every day with its ordered stops, and the ideas list. Days have no stored date (each day's date is computed from startDate) and cannot be reordered.",
+  "entrypoint": "run.py",
+  "parameters": {}
+}

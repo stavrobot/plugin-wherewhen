@@ -1,0 +1,11 @@
+{
+  "name": "delete_stop",
+  "description": "Delete a stop from its day or from ideas. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "stopId": {
+      "type": "string",
+      "description": "Id of the stop to delete, from get_trip."
+    }
+  }
+}

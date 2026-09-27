@@ -1,0 +1,19 @@
+{
+  "name": "update_trip",
+  "description": "Update the trip's name, startDate or paddingMin. Only the parameters you pass are changed. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "description": "New trip name."
+    },
+    "startDate": {
+      "type": "string",
+      "description": "Trip start date, YYYY-MM-DD. Every day's date is computed from this."
+    },
+    "paddingMin": {
+      "type": "integer",
+      "description": "Minutes of slack added to every travel leg."
+    }
+  }
+}

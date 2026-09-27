@@ -1,0 +1,11 @@
+{
+  "name": "search_places",
+  "description": "Search Google Places for up to five candidate places to add with add_stop. Returns each candidate's placeId, name, address and coordinates. If the server reports that place search is not configured (HTTP 503), do not retry; placeholders still work meanwhile.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "q": {
+      "type": "string",
+      "description": "Text to search for, e.g. \"Nafplio\" or \"museums in Athens\"."
+    }
+  }
+}

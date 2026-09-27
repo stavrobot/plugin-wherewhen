@@ -1,0 +1,19 @@
+{
+  "name": "update_day",
+  "description": "Change a day's startTime and/or endTime. Only the parameters you pass are changed. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "dayId": {
+      "type": "string",
+      "description": "Id of the day to change, from get_trip."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "New day start time, HH:mm local."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "New day end time, HH:mm local."
+    }
+  }
+}

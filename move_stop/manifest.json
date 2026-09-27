@@ -1,0 +1,19 @@
+{
+  "name": "move_stop",
+  "description": "Move a stop onto another day, or onto ideas, at an optional 0-based index. Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "stopId": {
+      "type": "string",
+      "description": "Id of the stop to move, from get_trip."
+    },
+    "dayId": {
+      "type": "string",
+      "description": "Destination day id, or \"ideas\" for the unscheduled stops."
+    },
+    "index": {
+      "type": "integer",
+      "description": "0-based position in the destination. Omit to append; values past the end are clamped to the end."
+    }
+  }
+}

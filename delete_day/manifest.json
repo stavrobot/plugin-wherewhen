@@ -1,0 +1,11 @@
+{
+  "name": "delete_day",
+  "description": "Delete a day. Its stops are not deleted: they move to ideas (unscheduled). Returns the full updated trip.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "dayId": {
+      "type": "string",
+      "description": "Id of the day to delete, from get_trip."
+    }
+  }
+}
